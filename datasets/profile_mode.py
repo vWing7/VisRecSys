@@ -50,7 +50,7 @@ class ProfileModeDataset(Dataset):
                     return id2index[str(element)]
             triples["profile"] = triples["profile"].map(lambda p: p.split())
             triples = triples.applymap(map_id2index)
-            triples["profile"] = triples["profile"].map(lambda p: " ".join(p))
+            triples["profile"] = triples["profile"].map(lambda p: " ".join(str(p)))
         # Mapping to unique profiles and use it to calculate profile sizes
         unique_profiles = triples["profile"].unique()
         profile2index = {k: v for v, k in enumerate(unique_profiles)}
